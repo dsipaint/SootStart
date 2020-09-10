@@ -1,5 +1,5 @@
 welcome_channel_id: "732290737558913107"
-welcome_message: ""
+welcome_message: "Welcome {USER_PING} to the Wilbur Soot official discord server! If you want to help me out, please ping al (I'm one of the discord mods) when you react to the message above!"
 rules_message_id: "734862688974405792"
 reaction_name: "U+1f649"
 role_id: "732290854118621344"
