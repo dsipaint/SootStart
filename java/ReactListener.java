@@ -16,13 +16,6 @@ public class ReactListener extends ListenerAdapter
 			});
 			
 			e.getGuild().removeRoleFromMember(e.getMember(), e.getGuild().getRoleById(Main.NEW_ROLE)).queue(); //remove new role
-			String msgid = Main.join_ids.remove(e.getMember().getId());
-			
-			if(msgid == null)
-				return;
-			
-			e.getGuild().getTextChannelById(Main.WELCOME_CHANNEL_ID)
-				.deleteMessageById(msgid).queue(); //delete welcome message and remove from cache
 		}
 	}
 }

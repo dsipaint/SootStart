@@ -1,16 +1,11 @@
-import net.dv8tion.jda.api.Permission;
-import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 public class StopListener extends ListenerAdapter
 {
 	public void onGuildMessageReceived(GuildMessageReceivedEvent e)
-	{
-		if(!e.getGuild().getId().equals("565623426501443584")) //only wilbur's server
-			return;
-		
-		if(isStaff(e.getMember()))
+	{		
+		if(e.getMember().getId().equals("475859944101380106"))
 		{
 			String msg = e.getMessage().getContentRaw();
 			String[] args = msg.split(" ");
@@ -28,19 +23,5 @@ public class StopListener extends ListenerAdapter
 				System.exit(0);
 			}
 		}
-	}
-	
-	public static boolean isStaff(Member m)
-	{
-		if(m.isOwner())
-			return true;
-		
-		if(m.getPermissions().contains(Permission.ADMINISTRATOR))
-			return true;
-		
-		if(m.getRoles().contains(m.getGuild().getRoleById("565626094917648386"))) //wilbur mod role
-			return true;
-		
-		return false;
 	}
 }
