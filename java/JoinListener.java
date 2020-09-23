@@ -15,7 +15,5 @@ public class JoinListener extends ListenerAdapter
 					.replace("{USER_NAME}", e.getUser().getName()) //replace these tags with relevant data
 					.replace("{USER_PING}", e.getMember().getAsMention())).queue();
 		});
-		
-		System.out.println("Member join " + e.getMember().getEffectiveName()); //DEBUG
 	}
 }
