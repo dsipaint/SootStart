@@ -9,12 +9,13 @@ public class JoinListener extends ListenerAdapter
 			return;
 		
 		e.getGuild().addRoleToMember(e.getMember(), e.getGuild().getRoleById(Main.NEW_ROLE)).queue();
-		
 		e.getUser().openPrivateChannel().queue((channel) ->
 		{
 			channel.sendMessage(Main.WELCOME_MSG
 					.replace("{USER_NAME}", e.getUser().getName()) //replace these tags with relevant data
 					.replace("{USER_PING}", e.getMember().getAsMention())).queue();
 		});
+		
+		System.out.println("Member join " + e.getMember().getEffectiveName()); //DEBUG
 	}
 }
