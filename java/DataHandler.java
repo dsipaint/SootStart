@@ -19,7 +19,7 @@ public class DataHandler
 			Main.WELCOME_CHANNEL_ID = (String) values.get("welcome_channel_id");
 			Main.WELCOME_MSG = (String) values.get("welcome_message");
 			Main.RULES_MSG_ID = (String) values.get("rules_message_id");
-			Main.REACTION_NAME = (String) values.get("reaction_name");
+			Main.COMMAND_NAME = (String) values.get("command_name");
 			Main.NEW_ROLE = (String) values.get("role_id");
 		}
 		catch (FileNotFoundException e1)

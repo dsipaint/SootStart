@@ -13,7 +13,7 @@ public class CommandListener extends ListenerAdapter
 			String[] args = msg.split(" ");
 			
 			//^verify
-			if(args[0].equalsIgnoreCase(Main.PREFIX + "verify"))
+			if(args[0].equalsIgnoreCase(Main.PREFIX + Main.COMMAND_NAME))
 				e.getGuild().removeRoleFromMember(e.getMember(), e.getGuild().getRoleById(Main.NEW_ROLE)).queue();
 			
 			e.getMessage().delete().queue();
