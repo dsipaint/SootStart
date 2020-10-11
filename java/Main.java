@@ -31,10 +31,22 @@ public class Main
 			e.printStackTrace();
 		}
 		
+		try
+		{
+			jda.awaitReady();
+		}
+		catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
+		
 		DataHandler.updateValues();
 		
+		jda.getTextChannelById(WELCOME_CHANNEL_ID).sendMessage("Welcome to the official Wilbur Soot discord server! Please type **"
+				+ Main.PREFIX + "verify** in this channel to confirm that you have read the server rules and to gain access to the rest of the server!").queue();
+		
 		jda.addEventListener(new JoinListener());
-		jda.addEventListener(new ReactListener());
+		jda.addEventListener(new CommandListener());
 		jda.addEventListener(new StopListener());
 	}
 }
