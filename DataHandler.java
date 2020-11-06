@@ -21,6 +21,8 @@ public class DataHandler
 			Main.RULES_MSG_ID = (String) values.get("rules_message_id");
 			Main.COMMAND_NAME = (String) values.get("command_name");
 			Main.NEW_ROLE_ID = (String) values.get("role_id");
+			Main.REMIND_MESSAGE = (String) values.get("remind_message");
+			Main.HOURS_TO_MSG = (Integer) values.get("hours_to_msg");
 		}
 		catch (FileNotFoundException e1)
 		{

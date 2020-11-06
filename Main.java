@@ -14,8 +14,11 @@ public class Main
 {
 	static JDA jda;
 	static final String PREFIX = "^";
-		
-	static String WELCOME_CHANNEL_ID = "732290737558913107";
+	
+	static String current_remind_message = null;
+	
+	//default values
+	static String WELCOME_CHANNEL_ID = "764602233563119637";
 	static String WELCOME_MSG = "Welcome {USER_PING} to the Wilbur Soot official discord server! Please be sure to read the rules and follow the instructions!";
 	static String RULES_MSG_ID = "734862688974405792";
 	static String COMMAND_NAME = "verify";
@@ -23,11 +26,10 @@ public class Main
 	static String FILE_LOC = "sootstart.yml";	
 	static final String GUILD_ID = "565623426501443584";
 	
-	static final ScheduledThreadPoolExecutor messagetask = new ScheduledThreadPoolExecutor(3);
-	static final int HOURS_TO_MSG = 24;
-	static final String MSG_CHANNEL = "764602233563119637",
-			MESSAGE = "There are {NUM_NEW_MEMBERS} unverified {NEW_MEMBER_PING}s! "
+	static int HOURS_TO_MSG = 24;
+	static String REMIND_MESSAGE = "There are {NUM_NEW_MEMBERS} unverified {NEW_MEMBER_PING}s! "
 			+ "Please read the messages above! Make sure you read the rules and have a good time chatting! **If you can't talk in this channel it means you're already verified**";
+	static final ScheduledThreadPoolExecutor messagetask = new ScheduledThreadPoolExecutor(3);
 	
 	public static void main(String[] args)
 	{
@@ -66,13 +68,22 @@ public class Main
 			Guild g = jda.getGuildById(GUILD_ID);
 			Role new_role = g.getRoleById(NEW_ROLE_ID);
 			
+			if(current_remind_message != null)
+			{
+				//delete old message first
+				jda.getTextChannelById(WELCOME_CHANNEL_ID).retrieveMessageById(current_remind_message).queue(remindmsg ->
+				{
+					remindmsg.delete().queue();
+				});
+			}
+			
 			g.findMembers((member) ->
 			{
 				return member.getRoles().contains(new_role);
 			})
 			.onSuccess((members) ->
 			{
-				jda.getTextChannelById(MSG_CHANNEL).sendMessage(MESSAGE.replace("{NUM_NEW_MEMBERS}", Integer.toString(members.size()))
+				jda.getTextChannelById(WELCOME_CHANNEL_ID).sendMessage(REMIND_MESSAGE.replace("{NUM_NEW_MEMBERS}", Integer.toString(members.size()))
 						.replace("{NEW_MEMBER_PING}", new_role.getAsMention())).queue();
 			});
 		},

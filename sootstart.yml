@@ -3,3 +3,5 @@ welcome_message: "Welcome to the Wilbur Soot official discord server! Please be 
 rules_message_id: "734862688974405792"
 command_name: "verify"
 role_id: "732290854118621344"
+hours_to_msg: 24
+remind_message: "There are {NUM_NEW_MEMBERS} unverified dud values! Please read the messages above! Make sure you read the rules and have a good time chatting! **If you can't talk in this channel it means you're already verified**"
