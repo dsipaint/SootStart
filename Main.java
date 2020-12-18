@@ -83,8 +83,8 @@ public class Main
 			})
 			.onSuccess((members) ->
 			{
-				jda.getTextChannelById(WELCOME_CHANNEL_ID).sendMessage(REMIND_MESSAGE.replace("{NUM_NEW_MEMBERS}", Integer.toString(members.size()))
-						.replace("{NEW_MEMBER_PING}", new_role.getAsMention())).queue();
+				current_remind_message = jda.getTextChannelById(WELCOME_CHANNEL_ID).sendMessage(REMIND_MESSAGE.replace("{NUM_NEW_MEMBERS}", Integer.toString(members.size()))
+                        .replace("{NEW_MEMBER_PING}", new_role.getAsMention())).complete().getId();
 			});
 		},
 			0, HOURS_TO_MSG, TimeUnit.HOURS);
